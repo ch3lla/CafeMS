@@ -41,7 +41,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Hyperlink fx:id="si_forgotPassword" layoutX="28.0" layoutY="208.0" text="Forgot Password?" />
+                  <Hyperlink fx:id="si_forgotPassword" layoutX="28.0" layoutY="208.0" onAction="#switchForgotPass" text="Forgot Password?" />
                </children></AnchorPane>
             <AnchorPane layoutX="2.0" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@styles/login.css">
                <children>
@@ -75,6 +75,83 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="forgot_passwordForm" layoutX="301.0" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@styles/login.css" visible="false">
+               <children>
+                  <Label layoutX="28.0" layoutY="53.0" styleClass="head-label" stylesheets="@styles/login.css" text="Forgot Password" textFill="#286155">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="forgot_password_username" layoutX="28.0" layoutY="135.0" prefHeight="25.0" prefWidth="243.0" promptText="Username" styleClass="textfield" stylesheets="@styles/login.css">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="forgot_passwordBtn" layoutX="29.0" layoutY="262.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Proceed">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ComboBox fx:id="forgot_password_question" layoutX="28.0" layoutY="179.0" prefHeight="25.0" prefWidth="243.0" promptText="Select a security question" styleClass="textfield" stylesheets="@styles/login.css" />
+                  <TextField fx:id="forgot_password_answer" layoutX="27.0" layoutY="219.0" prefHeight="25.0" prefWidth="243.0" promptText="Answer" styleClass="textfield" stylesheets="@styles/login.css">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="forgot_password_back_btn" layoutX="117.0" layoutY="345.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="39.0" prefWidth="65.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Back">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_LEFT" size="1.5em" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="change_password_form" layoutX="301.0" layoutY="-1.0" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@styles/login.css" visible="false">
+               <children>
+                  <Label layoutX="28.0" layoutY="53.0" styleClass="head-label" stylesheets="@styles/login.css" text="Forgot Password" textFill="#286155">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="change_passwordBtn" layoutX="28.0" layoutY="245.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Change Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="cp_back" layoutX="117.0" layoutY="345.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="39.0" prefWidth="65.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Back">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_LEFT" size="1.5em" />
+                     </graphic>
+                  </Button>
+                  <PasswordField fx:id="new_password" layoutX="29.0" layoutY="163.0" prefHeight="25.0" prefWidth="243.0" promptText="New password" styleClass="textfield" stylesheets="@styles/login.css">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField fx:id="confirm_new_password" layoutX="28.0" layoutY="200.0" prefHeight="25.0" prefWidth="243.0" promptText="Confirm New password" styleClass="textfield" stylesheets="@styles/login.css">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </PasswordField>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="side_form" prefHeight="400.0" prefWidth="300.0" styleClass="gradient" stylesheets="@styles/login.css">

@@ -20,6 +20,40 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
+    @FXML
+    private Button change_passwordBtn;
+
+    @FXML
+    private AnchorPane change_password_form;
+
+    @FXML
+    private PasswordField confirm_new_password;
+
+    @FXML
+    private Button cp_back;
+
+    @FXML
+    private Button forgot_passwordBtn;
+
+    @FXML
+    private AnchorPane forgot_passwordForm;
+
+    @FXML
+    private TextField forgot_password_answer;
+
+    @FXML
+    private Button forgot_password_back_btn;
+
+    @FXML
+    private ComboBox<?> forgot_password_question;
+
+    @FXML
+    private TextField forgot_password_username;
+
+    @FXML
+    private PasswordField new_password;
+
     @FXML
     private Hyperlink si_forgotPassword;
 
@@ -160,6 +194,16 @@ public class LoginController implements Initializable {
 
     }
 
+    public void switchForgotPass(){
+        forgot_passwordForm.setVisible(true);
+        si_loginForm.setVisible(false);
+    }
+
+    public void backToLogin(){
+        si_loginForm.setVisible(true);
+        forgot_passwordForm.setVisible(false);
+    }
+
     private String[] security_questions = {
         "What is your mother's maiden name?",
                 "What was the name of your first pet?",
@@ -188,6 +232,9 @@ public class LoginController implements Initializable {
             slider.setDuration(Duration.seconds(.5));
             slider.setOnFinished((ActionEvent e) -> {
                 side_createAccountBtn.setVisible(false);
+                forgot_passwordForm.setVisible(false);
+                si_loginForm.setVisible(true);
+                change_password_form.setVisible(false);
                 regQuestionList();
             });
 
@@ -198,6 +245,10 @@ public class LoginController implements Initializable {
             slider.setDuration(Duration.seconds(.5));
             slider.setOnFinished((ActionEvent e) -> {
                 side_createAccountBtn.setVisible(true);
+
+                forgot_passwordForm.setVisible(false);
+                si_loginForm.setVisible(true);
+                change_password_form.setVisible(false);
             });
 
             slider.play();
