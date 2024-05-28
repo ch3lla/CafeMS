@@ -89,7 +89,7 @@
                         <Font size="13.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="forgot_passwordBtn" layoutX="29.0" layoutY="262.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Proceed">
+                  <Button fx:id="forgot_passwordBtn" layoutX="29.0" layoutY="201.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Proceed" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -97,8 +97,8 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ComboBox fx:id="forgot_password_question" layoutX="28.0" layoutY="179.0" prefHeight="25.0" prefWidth="243.0" promptText="Select a security question" styleClass="textfield" stylesheets="@styles/login.css" />
-                  <TextField fx:id="forgot_password_answer" layoutX="27.0" layoutY="219.0" prefHeight="25.0" prefWidth="243.0" promptText="Answer" styleClass="textfield" stylesheets="@styles/login.css">
+                  <ComboBox fx:id="forgot_password_question" layoutX="28.0" layoutY="118.0" prefHeight="25.0" prefWidth="243.0" promptText="Select a security question" styleClass="textfield" stylesheets="@styles/login.css" visible="false" />
+                  <TextField fx:id="forgot_password_answer" layoutX="27.0" layoutY="158.0" prefHeight="25.0" prefWidth="243.0" promptText="Answer" styleClass="textfield" stylesheets="@styles/login.css" visible="false">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -114,6 +114,14 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_LEFT" size="1.5em" />
                      </graphic>
                   </Button>
+                  <Button fx:id="forgot_username_proceedBtn" layoutX="27.0" layoutY="180.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Proceed">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="change_password_form" layoutX="301.0" layoutY="-1.0" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@styles/login.css" visible="false">
@@ -123,7 +131,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="change_passwordBtn" layoutX="28.0" layoutY="245.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Change Password">
+                  <Button fx:id="change_passwordBtn" layoutX="28.0" layoutY="245.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="39.0" prefWidth="243.0" styleClass="login-btn" stylesheets="@styles/login.css" text="Change Password">
                      <font>
                         <Font size="14.0" />
                      </font>

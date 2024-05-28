@@ -6,6 +6,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
 import org.bson.Document;
@@ -74,16 +75,33 @@ public class Db {
 
         if (employeeDoc != null) {
             // Print the employee details
-            System.out.println("Employee found:");
+            System.out.println("Employee found");
             return employeeDoc;
-//            System.out.println("Username: " + employeeDoc.getString("username"));
-//            System.out.println("Password: " + employeeDoc.getString("password"));
-//            System.out.println("Security Question: " + employeeDoc.getString("securityQuestion"));
-//            System.out.println("Answer: " + employeeDoc.getString("answer"));
         } else {
             System.out.println("Employee with username " + username + " not found.");
             return null;
         }
+    }
+
+    public Document updateEmployee(String username, String key, String value){
+        if (database == null) {
+            throw new IllegalStateException("Database not connected. Call connectDB() first.");
+        }
+
+        MongoCollection<Document> collection = database.getCollection("employees");
+        Document query = new Document("username", username);
+
+        Document update = new Document("$set", new Document(key, value));
+        UpdateResult result = collection.updateOne(query, update);
+
+        if (result.getModifiedCount() == 0) {
+            throw new IllegalArgumentException("No document found with the specified username: " + username);
+        }
+
+        // Return the updated document
+        System.out.println("Employee updated successfully");
+        return collection.find(query).first();
+
     }
     public void close() {
         if (mongoClient != null) {

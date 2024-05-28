@@ -46,10 +46,13 @@ public class LoginController implements Initializable {
     private Button forgot_password_back_btn;
 
     @FXML
-    private ComboBox<?> forgot_password_question;
+    private ComboBox<String> forgot_password_question;
 
     @FXML
     private TextField forgot_password_username;
+
+    @FXML
+    private Button forgot_username_proceedBtn;
 
     @FXML
     private PasswordField new_password;
@@ -94,6 +97,8 @@ public class LoginController implements Initializable {
     private TextField su_username;
 
     private Alert alert;
+
+    private String username;
 
     public void registerBtn(){
         if (su_username.getText().isEmpty() || su_password.getText().isEmpty() ||
@@ -191,12 +196,57 @@ public class LoginController implements Initializable {
     }
 
     public void forgotPassword(){
+        username = forgot_password_username.getText();
+        Db db = new Db();
+        db.connectDB();
+        Document userData = db.getEmployee(username);
+        forgot_username_proceedBtn.setVisible(false);
+        forgot_password_username.setVisible(false);
+        forgot_password_question.setValue(userData.getString("securityQuestion"));
+        forgot_password_question.setVisible(true);
+        forgot_password_answer.setVisible(true);
+        forgot_passwordBtn.setVisible(true);
 
+        forgot_passwordBtn.setOnMouseClicked(event -> {
+            String answer = userData.getString("answer");
+            if (forgot_password_answer.getText().equalsIgnoreCase(answer)) {
+                switchToChangePasswordForm();
+            } else {
+                showErrorAlert("Answer to security question is incorrect :(");
+            }
+        });
+        db.close();
+    }
+
+    private void showErrorAlert(String message) {
+        if (alert == null) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+        }
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void switchToChangePasswordForm(){
+        forgot_passwordForm.setVisible(false);
+        change_password_form.setVisible(true);
     }
 
     public void switchForgotPass(){
         forgot_passwordForm.setVisible(true);
         si_loginForm.setVisible(false);
+    }
+
+    public void changePassword(){
+        if (new_password.getText().equals(confirm_new_password.getText())){
+            Db db = new Db();
+            db.updateEmployee(username, "password", new_password.getText());
+            si_loginForm.setVisible(true);
+            change_password_form.setVisible(false);
+        } else {
+            showErrorAlert("Password do not match");
+        }
     }
 
     public void backToLogin(){
